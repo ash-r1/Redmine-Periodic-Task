@@ -31,4 +31,4 @@ ja:
   label_unit_year: 年後
   flash_task_created: 繰り返しチケットが作成されました。
   flash_task_saved: 繰り返しチケットが保存されました。
-  subject_variables: 利用可能な変数 **DAY** (01-31), **WEEK** (01-53), **MONTH** (01-12), **MONTHNAME**, **PREVIOUS_MONTH** (01-12) and **PREVIOUS_MONTHNAME** (January - December), **YEAR** (YYYY)
+  subject_variables: 利用可能な変数 **{N}_DAY_AGO** ({N}=1-7) {N}_DAY_SINCE** ({N}=1-7) **TODAY** (01-31), **WEEK** (01-53), **MONTH** (01-12), **MONTHNAME**, **PREVIOUS_MONTH** (01-12) and **PREVIOUS_MONTHNAME** (January - December), **YEAR** (YYYY)

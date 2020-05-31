@@ -35,7 +35,7 @@ class Periodictask < ActiveRecord::Base
     [l(:label_unit_year), 'year']
   ]
 
-  def generate_issue(now = Time.now)
+  def generate_issue(now = Time.zone.now)
     if project.try(:active?)
       # Copy subject and description and replace variables
       subj = parse_macro(subject.try(:dup), now)
@@ -62,7 +62,11 @@ class Periodictask < ActiveRecord::Base
   private
   def parse_macro(str, now)
     if str.respond_to?(:gsub!) && str.present?
-      str.gsub!('**DAY**', now.strftime("%d"))
+      (1..7).each do |d|
+        str.gsub!("**#{d}_DAY_AGO**", now.ago(d.day).strftime("%d"))
+        str.gsub!("**#{d}_DAY_SINCE**", now.since(d.day).strftime("%d"))
+      end
+      str.gsub!('**TODAY**', now.strftime("%d"))
       str.gsub!('**WEEK**', now.strftime("%W"))
       str.gsub!('**MONTH**', now.strftime("%m"))
       str.gsub!('**MONTHNAME**', I18n.localize(now, :format => "%B"))
