@@ -65,6 +65,8 @@ class Periodictask < ActiveRecord::Base
       (1..7).each do |d|
         str.gsub!("**#{d}_DAY_AGO**", now.ago(d.day).strftime("%d"))
         str.gsub!("**#{d}_DAY_SINCE**", now.since(d.day).strftime("%d"))
+        str.gsub!("**#{d}_DAY_AGO_MONTH**", now.ago(d.day).strftime("%m"))
+        str.gsub!("**#{d}_DAY_SINCE_MONTH**", now.since(d.day).strftime("%m"))
       end
       str.gsub!('**TODAY**', now.strftime("%d"))
       str.gsub!('**WEEK**', now.strftime("%W"))
